@@ -10,6 +10,8 @@ const supabase = createClient(
   process.env.SUPABASE_URL,
   process.env.SUPABASE_SERVICE_ROLE_KEY // ⬅️ Importante: service_role, não anon
 );
+console.log("🔍 SUPABASE_URL:", process.env.SUPABASE_URL);
+console.log("🔍 SERVICE_ROLE_KEY:", process.env.SUPABASE_SERVICE_ROLE_KEY ? "✅ OK" : "❌ NÃO DEFINIDA");
 
 app.post('/save-google-token', async (req, res) => {
   const { user_id, access_token, refresh_token, external_account_id } = req.body;
