@@ -1,20 +1,20 @@
-import express from 'express'
-import bodyParser from 'body-parser'
-import { createClient } from '@supabase/supabase-js'
+const express = require('express');
+const bodyParser = require('body-parser');
+const { createClient } = require('@supabase/supabase-js');
 
-const app = express()
-app.use(bodyParser.json())
+const app = express();
+app.use(bodyParser.json());
 
 const supabase = createClient(
   process.env.SUPABASE_URL,
   process.env.SUPABASE_ANON_KEY
-)
+);
 
 app.post('/save-google-token', async (req, res) => {
-  const { user_id, access_token, refresh_token, external_account_id } = req.body
+  const { user_id, access_token, refresh_token, external_account_id } = req.body;
 
   if (!user_id || !access_token || !external_account_id) {
-    return res.status(400).json({ error: 'Dados incompletos' })
+    return res.status(400).json({ error: 'Dados incompletos' });
   }
 
   const { error } = await supabase
@@ -25,17 +25,17 @@ app.post('/save-google-token', async (req, res) => {
       access_token,
       refresh_token,
       external_account_id
-    }, { onConflict: ['user_id', 'service'] })
+    }, { onConflict: ['user_id', 'service'] });
 
-  if (error) return res.status(500).json({ error: error.message })
+  if (error) return res.status(500).json({ error: error.message });
 
-  res.status(200).json({ success: true })
-})
+  res.status(200).json({ success: true });
+});
 
 app.get('/', (req, res) => {
-  res.send('API online 🚀')
-})
+  res.send('API online 🚀');
+});
 
 app.listen(process.env.PORT || 3000, () => {
-  console.log('API rodando 🚀')
-})
+  console.log('API rodando 🚀');
+});
