@@ -1,17 +1,15 @@
 {
-  "name": "google-ads-api-save-token",
+  "name": "google-ads-api-server",
   "version": "1.0.0",
   "main": "index.js",
-  "type": "commonjs",
-  "engines": {
-    "node": ">=20.0.0"
-  },
+  "type": "module",
   "scripts": {
     "start": "node index.js"
   },
   "dependencies": {
-    "@supabase/supabase-js": "^2.39.6",
+    "@supabase/supabase-js": "^2.39.3",
     "body-parser": "^1.20.2",
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "node-fetch": "^2.6.11"
   }
 }
