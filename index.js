@@ -28,10 +28,7 @@ app.post('/save-google-token', async (req, res) => {
       external_account_id
     }, { onConflict: ['user_id', 'service'] });
 
-  if (error) {
-    console.error('Erro ao salvar token:', error.message);
-    return res.status(500).json({ error: error.message });
-  }
+  if (error) return res.status(500).json({ error: error.message });
 
   res.status(200).json({ success: true });
 });
