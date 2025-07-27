@@ -1,18 +1,14 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-console.log("🔍 SUPABASE_URL:", process.env.SUPABASE_URL);
-console.log("🔍 SERVICE_ROLE_KEY:", process.env.SUPABASE_SERVICE_ROLE_KEY ? "✅ OK" : "❌ NÃO DEFINIDA");
 const { createClient } = require('@supabase/supabase-js');
 
 const app = express();
 app.use(bodyParser.json());
 
-// Substitua por suas variáveis de ambiente no Railway
 const supabase = createClient(
   process.env.SUPABASE_URL,
-  process.env.SUPABASE_SERVICE_ROLE_KEY // ⬅️ Importante: service_role, não anon
+  process.env.SUPABASE_SERVICE_ROLE_KEY
 );
-
 
 app.post('/save-google-token', async (req, res) => {
   const { user_id, access_token, refresh_token, external_account_id } = req.body;
